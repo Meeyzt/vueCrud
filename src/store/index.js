@@ -5,11 +5,14 @@ import router from "../router";
 export default createStore({
   state: {
     posts: [],
-    post: {},
+    users: [],
   },
   mutations: {
     initPosts(state, posts) {
       state.posts = posts;
+    },
+    initUsers(state, users) {
+      state.users = users;
     },
     addPost(state, post) {
       state.posts.push(post);
@@ -39,19 +42,45 @@ export default createStore({
         })
         .catch((e) => console.log(e));
     },
+    initUsers(context) {
+      axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          context.commit("initUsers", response.data);
+        })
+        .catch((e) => console.log(e));
+    },
     addPost(context, post) {
-      context.commit("addPost", post);
+      axios
+        .post("https://jsonplaceholder.typicode.com/posts", post)
+        .then((response) => {
+          alert("Added", response.request.responseText);
+          context.commit("addPost", post);
+        });
     },
     updatePost(context, post) {
-      context.commit("updatePost", post);
+      axios
+        .put("https://jsonplaceholder.typicode.com/posts/" + post.id, post)
+        .then((response) => {
+          alert("Updated", response.request.responseText);
+          context.commit("updatePost", post);
+        });
     },
     deletePost(context, postID) {
-      context.commit("deletePost", postID);
+      axios
+        .delete("https://jsonplaceholder.typicode.com/posts/" + postID)
+        .then((response) => {
+          alert("Deleted", response.request.responseText);
+          context.commit("deletePost", postID);
+        });
     },
   },
   getters: {
     getPosts(state) {
       return state.posts;
+    },
+    getUsers(state) {
+      return state.users;
     },
   },
 });
