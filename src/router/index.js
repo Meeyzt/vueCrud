@@ -1,11 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../components/Home/Home.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/posts/:id",
+    name: "posts",
+    component: () => import("../components/Content/GetPost.vue"),
+  },
+  {
+    path: "*",
+    name: "all",
+    redirect: "/",
   },
 ];
 
