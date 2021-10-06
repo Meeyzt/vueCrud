@@ -5,7 +5,11 @@
         <h5 class="card-title">
           {{ post.title }}
         </h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ username }}</h6>
+        <router-link
+          :to="{ path: `/users/${post.userId}` }"
+          class="card-subtitle mb-2 text-muted"
+          >{{ username }}</router-link
+        >
         <p class="card-text position-static">
           {{ post.body }}
         </p>
