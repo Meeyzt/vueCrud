@@ -11,3 +11,10 @@
   color: #2c3e50;
 }
 </style>
+<script>
+export default {
+  created() {
+    this.$store.dispatch("initApp");
+  },
+};
+</script>
