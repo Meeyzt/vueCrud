@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Posts from "@/components/Content/Posts";
+import Posts from "../Content/ListPosts.vue";
 export default {
   name: "Home",
   components: { Posts },
