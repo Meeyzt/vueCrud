@@ -1,6 +1,7 @@
-import Vuex from "vuex";
+import axios from "axios";
+import { createStore } from "vuex";
 
-export const store = new Vuex.Store({
+export default createStore({
   state: {
     posts: [],
   },
@@ -15,7 +16,16 @@ export const store = new Vuex.Store({
     // deletePost(state, postID) {},
   },
   actions: {
-    // initApp(context) {},
+    initApp() {
+      axios
+        .get("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => {
+          for (let key in response.data) {
+            this.state.posts.push(response.data[key]);
+          }
+        })
+        .catch((e) => console.log(e));
+    },
     // addPost(context, post) {},
     // updatePost(context, post) {},
     // deletePost(context, postID) {},
