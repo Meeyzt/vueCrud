@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/Home/Home.vue";
+import getPost from "../components/Content/GetPost.vue";
 
 const routes = [
   {
@@ -8,14 +9,19 @@ const routes = [
     component: Home,
   },
   {
-    path: "/posts/:id",
-    name: "posts",
-    component: () => import("../components/Content/GetPost.vue"),
+    path: "/posts",
+    name: "getPost",
+    component: getPost,
   },
   {
-    path: "*",
-    name: "all",
-    redirect: "/",
+    path: "/addPost",
+    name: "addPost",
+    component: () => import("../components/AddPost"),
+  },
+  {
+    path: "/updatePost",
+    name: "updatePost",
+    component: () => import("../components/updatePost"),
   },
 ];
 
