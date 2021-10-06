@@ -14,7 +14,7 @@
             <h6 class="text">Phone Number: {{ user.phone }}</h6>
             <h6 class="text">Company: {{ user.company.name }}</h6>
             <p class="card-text position-static">
-              Web Site: <a href="hildegard.org">hildegard.org</a>
+              Web Site: {{ user.website }}
             </p>
             <p>
               Address:
