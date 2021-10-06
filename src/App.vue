@@ -1,11 +1,11 @@
 <template>
   <navBar />
-  <router-view />
+  <router-view class="mt-4" />
 </template>
 
 <style>
 body {
-  background-color: rgb(23, 27, 27);
+  background-color: #222;
 }
 </style>
 <script>

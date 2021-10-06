@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-auto mb-5 w-25 h-25 mt-5 mh-25 mw-25 d-inline">
-    <div class="card">
+    <div class="card bg-dark text-light shadow-lg">
       <div class="card-body">
         <h5 class="card-title">
           {{ post.title }}

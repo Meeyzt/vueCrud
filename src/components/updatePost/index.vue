@@ -47,7 +47,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch("updatePost", this.post);
+      try {
+        this.$store.dispatch("updatePost", this.post);
+      } catch (error) {
+        alert(error);
+      }
     },
   },
 };

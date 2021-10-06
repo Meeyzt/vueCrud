@@ -13,6 +13,7 @@ export default createStore({
     },
     addPost(state, post) {
       state.posts.push(post);
+      router.push({ name: "Home" });
     },
     updatePost(state, post) {
       let index = state.posts.findIndex((c) => c.id == post.id);

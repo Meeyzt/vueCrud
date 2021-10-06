@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-md-center">
+  <div class="justify-content-md-center d-flex flex-row flex-wrap">
     <Post v-for="post in posts" :post="post" :key="post.id" />
   </div>
 </template>
