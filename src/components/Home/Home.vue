@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <Posts />
   </div>
 </template>
 
 <script>
+import Posts from "../Content/ListPosts.vue";
 export default {
   name: "Home",
-  components: {},
+  components: { Posts },
 };
 </script>

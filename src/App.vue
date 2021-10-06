@@ -1,13 +1,19 @@
 <template>
-  <router-view />
+  <navBar />
+  <router-view class="mt-4" />
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  background-color: #222;
 }
 </style>
+<script>
+import navBar from "./components/navBar";
+export default {
+  components: { navBar },
+  created() {
+    this.$store.dispatch("initApp");
+  },
+};
+</script>
