@@ -14,6 +14,7 @@ export default {
   components: { navBar },
   created() {
     this.$store.dispatch("initApp");
+    this.$store.dispatch("initUsers");
   },
 };
 </script>

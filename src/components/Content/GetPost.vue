@@ -1,11 +1,12 @@
 <template>
-  <div class="col-md-6 offset-3 mt-5 ">
+  <div class="col-md-6 offset-3 mt-5">
     <h3 class="text-center text-info mt-5 mb-4">Post Info</h3>
     <div class="card bg-dark text-light shadow-lg p-3">
       <div class="card-body">
         <h5 class="card-title">
           {{ post.title }}
         </h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ username }}</h6>
         <p class="card-text position-static">
           {{ post.body }}
         </p>
@@ -37,7 +38,16 @@ export default {
         title: "",
         userId: "",
       },
+      username: "",
     };
+  },
+  computed: {
+    posts() {
+      return this.$store.getters.getPosts;
+    },
+    users() {
+      return this.$store.getters.getUsers;
+    },
   },
   methods: {
     deletePost() {
@@ -50,7 +60,7 @@ export default {
     },
     updatePost() {
       if (this.post.id != 0 && this.post.id != undefined) {
-        router.push({ name: "updatePost", params: { ...this.post } });
+        router.push({ path: `/updatePost/${this.post.id}` });
       } else {
         alert("Please select a post");
         router.push({ name: "Home" });
@@ -59,7 +69,18 @@ export default {
   },
   created() {
     try {
-      this.post = this.$route.params;
+      const postid = this.$route.params.id;
+      this.post = this.posts.find(
+        (item) => item.id.toString() === postid.toString()
+      );
+      const user = this.users.find(
+        (item) => item.id.toString() === this.post.userId.toString()
+      );
+      if (user) {
+        this.username = user.name;
+      } else {
+        this.username = "Mehmet";
+      }
     } catch (error) {
       alert(error);
     }
