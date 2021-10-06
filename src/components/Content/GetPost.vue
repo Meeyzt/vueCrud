@@ -1,41 +1,49 @@
 <template>
-  <div class="col-md-auto pt-3">
-    <div class="card">
-      <div class="card-body" style="width:20rem">
-        <h5 class="card-title">
-          {{ post.title }}
-        </h5>
-        <p class="card-text">
-          {{ post.body }}
-        </p>
-        <a :href="'/posts/' + post.id" class="card-link">View</a>
-        <a :href="'/posts/' + post.id" class="card-link text-danger">Delete</a>
+  <div class="justify-content-center">
+    <div class="col-md-6 offset-3 mt-5">
+      <div class="card bg-dark text-light">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ post.title }}
+          </h5>
+          <p class="card-text position-static">
+            {{ post.body }}
+          </p>
+          <div class="float-right">
+            <router-link
+              :to="{ name: 'updatePost', params: { ...post } }"
+              tag="button"
+              class="btn btn-sm btn-outline-warning"
+              >Update</router-link
+            >
+            <button
+              @click="$store.dispatch('deletePost', post.id)"
+              class="btn btn-sm btn-outline-danger ml-2 mr-2"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "Home",
-  components: {},
-  created() {
-    axios
-      .get(
-        "https://jsonplaceholder.typicode.com/posts/" + this.$route.params.id
-      )
-      .then((response) => {
-        this.post = response.data;
-      })
-      .catch((e) => console.log(e));
-  },
   data() {
     return {
-      post: {},
+      post: {
+        id: 0,
+        body: "",
+        title: "",
+        userId: "",
+      },
     };
+  },
+  created() {
+    this.post = this.$route.params;
   },
 };
 </script>
-/* background-image: linear-gradient( to right top, #051937, #002436, #022b2d,
-#293928, #32342d );*/
